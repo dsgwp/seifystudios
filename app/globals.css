@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
+/* ─── Design tokens — light theme ───────────────────────────── */
+/*
+ * Variable names are intentionally semantic for the dark theme they
+ * replaced; the values are now inverted. Don't rename them — the
+ * Tailwind utility classes (text-ivory, bg-bg, etc.) are wired to
+ * these names throughout every component.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg:      #f4f0ea;   /* warm cream canvas */
+  --surface: #ece7dd;   /* slightly deeper ivory — Contact / Footer panels */
+  --ivory:   #1a1816;   /* dark warm charcoal — all headings & body text */
+  --dim:     #78706a;   /* warm medium gray — secondary / muted text */
+  --gold:    #8a6530;   /* amber, darkened ~30% vs dark-theme value for contrast */
+  --edge:    #d5cfc7;   /* light warm border / divider */
 }
 
+/* ─── Tailwind v4 theme ─────────────────────────────────────── */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg:      var(--bg);
+  --color-surface: var(--surface);
+  --color-ivory:   var(--ivory);
+  --color-dim:     var(--dim);
+  --color-gold:    var(--gold);
+  --color-edge:    var(--edge);
+
+  --font-display: var(--font-syne);
+  --font-sans:    var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Offset anchor jumps so the sticky nav never hides section titles */
+  scroll-padding-top: 5.5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Subtle top-to-bottom tonal shift for depth — keeps it fully monochrome */
+  background-color: var(--bg);
+  background-image: linear-gradient(180deg, #f7f3ed 0%, #ede8df 100%);
+  background-attachment: fixed;
+  color: var(--ivory);
+  font-family: var(--font-sans, sans-serif);
+}
+
+/* ─── Grain texture overlay ─────────────────────────────────── */
+/*
+ * A fixed SVG feTurbulence noise tile sits above the background but
+ * below all content (pointer-events: none). The 200 × 200 px tile
+ * repeats seamlessly thanks to stitchTiles="stitch".
+ * Opacity is kept low enough to be subliminal on light backgrounds.
+ */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.048;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+/* ─── Selection ─────────────────────────────────────────────── */
+::selection {
+  background-color: var(--gold);
+  color: #f7f3ed;
 }
