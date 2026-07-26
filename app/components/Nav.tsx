@@ -32,9 +32,9 @@ export default function Nav() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
-      className={`fixed top-0 left-0 right-0 z-50 bg-bg/95 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 bg-bg transition-all duration-300 ${
         scrolled || menuOpen
-          ? "backdrop-blur-md border-b border-edge"
+          ? "border-b border-edge"
           : ""
       }`}
     >
