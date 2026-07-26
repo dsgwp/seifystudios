@@ -31,6 +31,7 @@ export default function Nav() {
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      style={{ paddingTop: "env(safe-area-inset-top, 0px)" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
         scrolled || menuOpen
           ? "bg-bg/95 backdrop-blur-md border-b border-edge"

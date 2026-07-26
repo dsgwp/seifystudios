@@ -37,7 +37,7 @@ export default function Hero() {
       aria-labelledby="hero-heading"
       className="relative min-h-[100dvh] flex flex-col
                  px-6 md:px-12
-                 pt-24 md:pt-28
+                 hero-safe-pt
                  pb-24 md:pb-36
                  max-w-7xl mx-auto"
     >
@@ -62,7 +62,7 @@ export default function Hero() {
           variants={line}
           className="font-display font-extrabold leading-[0.92] tracking-tight text-ivory
                      mb-10 md:mb-12
-                     text-[clamp(3.5rem,10vw,9.5rem)]"
+                     text-[clamp(2rem,10vw,9.5rem)]"
         >
           We build
           <br />
