@@ -47,7 +47,7 @@ export default function Service() {
         <h2
           id="service-heading"
           className="font-display font-extrabold leading-[0.92] tracking-tight text-ivory
-                     text-[clamp(2rem,5.5vw,5.5rem)] mb-10 md:mb-12"
+                     text-[clamp(1.75rem,5.5vw,5.5rem)] mb-10 md:mb-12"
         >
           Website Design
           <br />
